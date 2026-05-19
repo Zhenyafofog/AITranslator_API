@@ -1,0 +1,104 @@
+{
+	"info": {
+		"name": "AI Translator API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"url": "http://localhost:8000/health"
+			}
+		},
+		{
+			"name": "Translate EN-RU",
+			"request": {
+				"method": "POST",
+				"url": "http://localhost:8000/translate/",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"Hello, how are you?\",\n  \"direction\": \"en-ru\"\n}"
+				}
+			}
+		},
+		{
+			"name": "Translate RU-EN",
+			"request": {
+				"method": "POST",
+				"url": "http://localhost:8000/translate/",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"Привет, как дела?\",\n  \"direction\": \"ru-en\"\n}"
+				}
+			}
+		},
+		{
+			"name": "Translate – empty text",
+			"request": {
+				"method": "POST",
+				"url": "http://localhost:8000/translate/",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"\",\n  \"direction\": \"en-ru\"\n}"
+				}
+			}
+		},
+		{
+			"name": "Translate – text too long",
+			"request": {
+				"method": "POST",
+				"url": "http://localhost:8000/translate/",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"{{$randomLoremParagraphs}}\",\n  \"direction\": \"en-ru\"\n}"
+				}
+			}
+		},
+		{
+			"name": "Get history",
+			"request": {
+				"method": "GET",
+				"url": "http://localhost:8000/history/?page=1&limit=5"
+			}
+		},
+		{
+			"name": "Get history by ID",
+			"request": {
+				"method": "GET",
+				"url": "http://localhost:8000/history/1"
+			}
+		},
+		{
+			"name": "History – missing ID",
+			"request": {
+				"method": "GET",
+				"url": "http://localhost:8000/history/9999"
+			}
+		}
+	]
+}
